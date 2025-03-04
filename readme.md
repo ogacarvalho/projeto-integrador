@@ -1,4 +1,4 @@
-REQUISITOS:
+![image](https://github.com/user-attachments/assets/780d0367-a65f-4fe9-91f8-2962fc2b517b)REQUISITOS:
 → node 20.18.0
 → npm  10.8.2
 → sqlite3 3.45.1
@@ -9,6 +9,7 @@ EXECUÇÃO:
 
 ROTAS:
 
+![image](https://github.com/user-attachments/assets/710c47ff-47b6-45f4-ae0c-70101bb59d05)
 
 1. Criar Produto:
 → POST http://localhost:3000/api/produtos
@@ -22,6 +23,7 @@ BODY {
   "localArmazenamento": "Deposito B"
 }
 
+![image](https://github.com/user-attachments/assets/f9c835ca-e2f1-4550-9d80-2e679640bb88)
 
 2. Consultar Produtos:
 → GET http://localhost:3000/api/produtos
