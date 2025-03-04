@@ -1,3 +1,6 @@
+LANDING PAGE:
+https://ogacarvalho.github.io/projeto-integrador/
+
 INSTALAÇÃO:
 https://github.com/user-attachments/assets/af290415-f094-4905-a541-8bb8f3f1edcb
 
