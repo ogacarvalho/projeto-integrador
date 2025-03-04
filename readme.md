@@ -11,6 +11,7 @@ REQUISITOS:
 → node 20.18.0
 → npm  10.8.2
 → sqlite3 3.45.1
+→ npm install bcryptjs
 
 EXECUÇÃO:
 → node server.js
@@ -79,3 +80,21 @@ BODY {
 → GET http://localhost:3000/api/relatorios/estoque-baixo?limite=9
 
 ![image](https://github.com/user-attachments/assets/dd90ef51-ce7d-45ad-8c2b-2e0421ed98c7)
+
+
+8. Cadastro de Usuario:
+→ POST http://localhost:3000/api/usuarios
+
+{
+  "nome": "Usuario",
+  "email": "usuario@email.com",
+  "senha": "123456"
+}
+
+9. Login:
+→ POST http://localhost:3000/api/usuarios/login
+
+{
+  "email": "usuario@email.com",
+  "senha": "123456"
+}
