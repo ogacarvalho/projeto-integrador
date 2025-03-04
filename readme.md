@@ -82,6 +82,7 @@ BODY {
 ![image](https://github.com/user-attachments/assets/dd90ef51-ce7d-45ad-8c2b-2e0421ed98c7)
 
 
+
 8. Cadastro de Usuario:
 → POST http://localhost:3000/api/usuarios
 
@@ -90,6 +91,8 @@ BODY {
   "email": "usuario@email.com",
   "senha": "123456"
 }
+![image](https://github.com/user-attachments/assets/810d50a0-4dc8-44e5-b97a-14728a56daf2)
+
 
 9. Login:
 → POST http://localhost:3000/api/usuarios/login
@@ -98,3 +101,5 @@ BODY {
   "email": "usuario@email.com",
   "senha": "123456"
 }
+
+![image](https://github.com/user-attachments/assets/f3975a3b-d9c2-45aa-af95-939c0f049f16)
