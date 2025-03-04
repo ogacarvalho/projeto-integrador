@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stock na Mao</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Corpo da página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #3206f2;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Cabeçalho */
+        header {
+            background: #3005f3;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        /* Navegação */
+        nav {
+            background: #100438;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: rgb(255, 255, 255);
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Seção principal (Hero) */
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+            background: #4113d9;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .hero h2 {
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .app-image {
+            max-width: 80%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        /* Seção de venda */
+        .sell-section {
+            background-color: #181630;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .sell-section h2 {
+            margin-bottom: 20px;
+            font-size: 2em;
+            color: #ffffff;
+        }
+
+        .sell-section p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .sell-section button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            color: white;
+            background-color: #0044cc;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .sell-section button:hover {
+            background-color: #f01220;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #6847eb;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            .hero {
+                height: 50vh;
+            }
+
+            .hero h2 {
+                font-size: 2.5em;
+            }
+
+            .sell-section {
+                padding: 30px 15px;
+            }
+
+            .sell-section h2 {
+                font-size: 1.8em;
+            }
+
+            .sell-section button {
+                width: 100%;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <h1>Stock Na Mão</h1>
+        <p>O aplicativo que ajuda a gerenciar o estoque de sua empresa</p>
+    </header>
+
+    <!-- Navegação -->
+    <nav>
+       
+        <a href="#contato">Contato: contato@stocknamao.com.br</a>
+    </nav>
+
+    <!-- Seção principal (Hero) -->
+    <section class="hero" id="home">
+        <br><br><br><br><br><br><br><br><br><br><br>
+        <h2>O "Stock na Mão" é o aplicativo perfeito para pequenos empresários que desejam ter o controle total do estoque de forma prática e sem complicação. Tudo na palma da sua mão, onde quer que você esteja.</h2>
+        
+            <ul type:"circle" >
+                <li>Organize seu estoque de maneira simples e eficiente. </li>
+                <li>Menos tempo perdido, mais controle para o seu negócio!</li>
+                <li>Transforme seu estoque em um aliado. </li>
+                <li>Chega de erros e falta de controle!</li>
+                <li>Você no comando do seu estoque, onde quer que esteja.</li>
+                <li>Estoque organizado, negócios mais rentáveis.</li>
+                <li>Diga adeus aos erros de inventário.</li>
+            </ul>      
+            
+           <h2>Não perca tempo!</h2>
+            
+            Baixe agora o Stock Na Mão e transforme sua pequena empresa em uma gigante</p>
+
+        <!-- Imagem do aplicativo (Substitua a URL pela imagem do seu app) -->
+       <br>
+        <img src="StockNaMao.png" alt="Imagem do aplicativo Stock Na Mão" class="app-image">
+    </section>
+
+    <!-- Seção de Venda -->
+    <section class="sell-section" id="compra">
+        <br><br><br><br><br><br><br><br><br><br>
+        <h2>Adquira Stock Na Mão agora!</h2>
+        <p>Garanta a organização do estoque de sua empresa com o nosso aplicativo fácil de usar e eficiente.</p>
+        <button onclick="window.location.href='#contato'">Baixar Agora</button>
+    
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2025 Stock Na Mão - Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
+
