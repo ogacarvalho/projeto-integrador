@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/780d0367-a65f-4fe9-91f8-2962fc2b517b)REQUISITOS:
+REQUISITOS:
 → node 20.18.0
 → npm  10.8.2
 → sqlite3 3.45.1
@@ -8,8 +8,6 @@ EXECUÇÃO:
 
 
 ROTAS:
-
-![image](https://github.com/user-attachments/assets/710c47ff-47b6-45f4-ae0c-70101bb59d05)
 
 1. Criar Produto:
 → POST http://localhost:3000/api/produtos
@@ -25,12 +23,19 @@ BODY {
 
 ![image](https://github.com/user-attachments/assets/f9c835ca-e2f1-4550-9d80-2e679640bb88)
 
+
+
 2. Consultar Produtos:
 → GET http://localhost:3000/api/produtos
+
+![image](https://github.com/user-attachments/assets/13fddcbf-ed93-4835-8637-016d25966536)
+
+
 
 
 3. Consultar Produto pelo ID:
 → GET http://localhost:3000/api/produtos/2
+![image](https://github.com/user-attachments/assets/b22b9c2c-6673-4c88-8e81-717e6a3e7973)
 
 
 4. Atualizar Produto:
@@ -40,9 +45,14 @@ BODY {
   "quantidade": 25
 }
 
+![image](https://github.com/user-attachments/assets/58f2c533-3990-4feb-b340-4deabd82ad12)
+
+
 
 5. Deletar Produto:
 → DELETE http://localhost:3000/api/produtos/2
+![image](https://github.com/user-attachments/assets/ba17e90e-1ce3-4791-8ce6-58bd1a1fddb4)
+
 
 
 6. Movimentar Estoque:
@@ -53,5 +63,10 @@ BODY {
   "motivo": "Venda realizada"
 }
 
+![image](https://github.com/user-attachments/assets/700eaff6-c1fc-499b-a805-94461ebf26e2)
+
+
 7. Relatórios: 
 → GET http://localhost:3000/api/relatorios/estoque-baixo?limite=9
+
+![image](https://github.com/user-attachments/assets/dd90ef51-ce7d-45ad-8c2b-2e0421ed98c7)
