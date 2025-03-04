@@ -1,3 +1,9 @@
+INSTALAÇÃO:
+https://github.com/user-attachments/assets/af290415-f094-4905-a541-8bb8f3f1edcb
+
+
+
+
 REQUISITOS:
 → node 20.18.0
 → npm  10.8.2
