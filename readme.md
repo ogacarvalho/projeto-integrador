@@ -5,6 +5,8 @@
 Eriberto Simão da Silva
 Rolf Santana Sokolonski
 
+Luís Marcelo Bartz de Ávila 
+
 
 LANDING PAGE:
 https://ogacarvalho.github.io/projeto-integrador/
