@@ -8,6 +8,8 @@ Rolf Santana Sokolonski
 
 Luís Marcelo Bartz de Ávila 
 
+Caroleen Ahmad Fadel
+
 
 LANDING PAGE:
 https://ogacarvalho.github.io/projeto-integrador/
