@@ -1,6 +1,6 @@
-##PI - 5º Semestre
+# PI - 5º Semestre
 
-Participantes do grupo:
+## Participantes do grupo:
 
 Eriberto Simão da Silva
 
