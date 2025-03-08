@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock na Mão - Relatórios</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        header, footer {
+            width: 100%;
+            background: white;
+            padding: 10px;
+            position: fixed;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            top: 0;
+            text-align: left;
+            padding-left: 20px;
+        }
+        footer {
+            bottom: 0;
+            text-align: center;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 60px;
+            width: 500px;
+        }
+        input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            border-radius: 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #relatorio-lista {
+            margin-top: 20px;
+            text-align: left;
+            width: 100%;
+        }
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+        .card strong {
+            display: block;
+            font-size: 18px;
+            color: #333;
+        }
+        .card p {
+            margin: 5px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Stock na Mão - Relatórios</h2>
+    </header>
+    
+    <div class="container">
+        <h2>Relatórios de Estoque Baixo</h2>
+        <input type="number" id="limite-estoque" placeholder="Limite de Estoque (padrão: 10)">
+        <button onclick="listarEstoqueBaixo()">Listar Produtos com Estoque Baixo</button>
+        <div id="relatorio-lista"></div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Stock na Mão. Todos os direitos reservados.</p>
+        <p>Desenvolvido por Grupo Stock na Mão</p>
+    </footer>
+
+    <script>
+        // Função para listar produtos com estoque baixo
+        async function listarEstoqueBaixo() {
+            const limite = document.getElementById('limite-estoque').value || 10; // Valor padrão 10
+            const response = await fetch(`http://localhost:3000/api/relatorios/estoque-baixo?limite=${limite}`);
+            const produtos = await response.json();
+
+            const lista = document.getElementById('relatorio-lista');
+            lista.innerHTML = produtos.map(produto => `
+                <div class="card">
+                    <strong>${produto.nome}</strong>
+                    <p>Quantidade: ${produto.quantidade}</p>
+                    <p>Validade: ${new Date(produto.dataValidade).toLocaleDateString('pt-BR')}</p>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
