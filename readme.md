@@ -10,6 +10,8 @@ Luís Marcelo Bartz de Ávila
 
 Caroleen Ahmad Fadel
 
+Pedro Henrique Oliveira de Souza
+
 
 LANDING PAGE:
 https://ogacarvalho.github.io/projeto-integrador/
