@@ -1,191 +1,212 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock na Mão - Produtos</title>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-
-      body {
-        font-family: "Roboto", sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #f4f4f4;
-      }
-      header,
-      footer {
-        width: 100%;
-        background: white;
-        padding: 10px;
-        position: fixed;
-      }
-      header {
-        top: 0;
-        text-align: left;
-        padding-left: 20px;
-      }
-      footer {
-        bottom: 0;
-        text-align: center;
-      }
-      .container {
-        background: white;
-        padding: 40px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        margin-top: 60px;
-        margin-bottom: 60px;
-        width: 500px;
-      }
-      input {
-        display: block;
-        width: 100%;
-        margin: 10px 0;
-        padding: 12px;
-        border-radius: 20px;
-        border: none;
-      }
-      .button-group {
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
-        padding: 10px 0;
-      }
-      button {
-        width: 48%;
-        padding: 14px;
-        border-radius: 20px;
-        border: none;
-        background-color: #007bff;
-        color: white;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #0056b3;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h2>Stock na Mão</h2>
-    </header>
-
-    <div class="container">
-      <h2>Gestão de Produtos</h2>
-      <input type="text" id="produto-nome" placeholder="Nome do Produto" />
-      <input type="number" id="produto-quantidade" placeholder="Quantidade" />
-      <input type="date" id="produto-validade" placeholder="Data de Validade" />
-      <input type="text" id="produto-cor" placeholder="Cor" />
-      <input type="text" id="produto-tamanho" placeholder="Tamanho" />
-      <input
-        type="text"
-        id="produto-local"
-        placeholder="Local de Armazenamento"
-      />
-      <button onclick="cadastrarProduto()">Cadastrar Produto</button>
-
-      <hr />
-
-      <input type="text" id="produto-id-busca" placeholder="ID do Produto" />
-      <div class="button-group">
-        <button onclick="consultarProdutoPorId()">
-          Consultar Produto por ID
-        </button>
-      </div>
-
-      <hr />
-    </div>
-
-    <div id="resultado-consulta"></div>
-
-    <footer>
-      <p>&copy; 2025 Stock na Mão. Todos os direitos reservados.</p>
-      <p>Desenvolvido por Grupo Stock na Mão</p>
-    </footer>
-
-    <script>
-      //1. Produtos
-      // Função para cadastrar um novo produto
-      async function cadastrarProduto() {
-        const nome = document.getElementById("produto-nome").value;
-        const quantidade = document.getElementById("produto-quantidade").value;
-        const dataValidade = document.getElementById("produto-validade").value;
-        const cor = document.getElementById("produto-cor").value;
-        const tamanho = document.getElementById("produto-tamanho").value;
-        const localArmazenamento =
-          document.getElementById("produto-local").value;
-        const response = await fetch("http://localhost:3000/api/produtos", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nome,
-            quantidade,
-            dataValidade,
-            cor,
-            tamanho,
-            localArmazenamento,
-          }),
-        });
-        const data = await response.json();
-        console.log(data);
-      }
-
-      // Função para formatar data
-      function formatarData(data) {
-        const d = new Date(data);
-        const dia = String(d.getDate()).padStart(2, "0");
-        const mes = String(d.getMonth() + 1).padStart(2, "0"); // Mês começa de 0
-        const ano = d.getFullYear();
-        return `${dia}/${mes}/${ano}`;
-      }
-      // Função para buscar um produto pelo ID e exibir na tela
-      async function consultarProdutoPorId() {
-        const id = document.getElementById("produto-id-busca").value;
-        const response = await fetch(
-          `http://localhost:3000/api/produtos/${id}`
-        );
-        const data = await response.json();
-
-        if (data) {
-          // Formatar a data de validade, se existir
-          const dataValidadeFormatada = data.dataValidade
-            ? formatarData(data.dataValidade)
-            : "Não disponível";
-          const corExibicao = data.cor ? data.cor : "Não especificado";
-          const tamanhoExibicao = data.tamanho
-            ? data.tamanho
-            : "Não especificado";
-          const localExibicao = data.localArmazenamento
-            ? data.localArmazenamento
-            : "Não especificado";
-
-          // Atualizar a área de resultado com os detalhes do produto
-          const resultadoConsulta =
-            document.getElementById("resultado-consulta");
-          resultadoConsulta.innerHTML = `
-                <h3>Detalhes do Produto</h3>
-                <p><strong>Nome:</strong> ${data.nome}</p>
-                <p><strong>Quantidade:</strong> ${data.quantidade}</p>
-                <p><strong>Data de Validade:</strong> ${dataValidadeFormatada}</p>
-                <p><strong>Cor:</strong> ${corExibicao}</p>
-                <p><strong>Tamanho:</strong> ${tamanhoExibicao}</p>
-                <p><strong>Local de Armazenamento:</strong> ${localExibicao}</p>
-            `;
-        } else {
-          // Se o produto não for encontrado
-          const resultadoConsulta =
-            document.getElementById("resultado-consulta");
-          resultadoConsulta.innerHTML = `<p>Produto não encontrado.</p>`;
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
         }
-      }
+        header, footer {
+            width: 100%;
+            background: white;
+            padding: 10px;
+            position: fixed;
+        }
+        header {
+            top: 0;
+            text-align: left;
+            padding-left: 20px;
+        }
+        footer {
+            bottom: 0;
+            text-align: center;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 60px;
+            width: 500px;
+        }
+        input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 20px;
+            border: none;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 10px 0;
+        }
+        button {
+            width: 48%;
+            padding: 14px;
+            border-radius: 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Stock na Mão</h2>
+    </header>
+    
+    <div class="container">
+        <h2>Gestão de Produtos</h2>
+        <input type="text" id="produto-nome" placeholder="Nome do Produto">
+        <input type="number" id="produto-quantidade" placeholder="Quantidade">
+        <input type="date" id="produto-validade" placeholder="Data de Validade">
+        <input type="text" id="produto-cor" placeholder="Cor">
+        <input type="text" id="produto-tamanho" placeholder="Tamanho">
+        <input type="text" id="produto-local" placeholder="Local de Armazenamento">
+        <button onclick="adicionarProduto()">Adicionar Produto</button>
+        <input type="text" id="produto-id-busca" placeholder="ID do Produto">
+        <div class="button-group">
+            <button onclick="buscarProduto()">Buscar Produto</button>
+            <button onclick="excluirProduto()">Excluir Produto</button>
+        </div>
+        <div class="button-group">
+            <button onclick="atualizarProduto()">Atualizar Produto</button>
+            <button onclick="atualizarInformacaoIndividualProduto()">Atualizar Informações do Produto</button>
+        </div>
+        <div class="button-group">
+            <button onclick="produtoVendido">Produtos Vendidos</button>
+            <button onclick="paginaRelatorio">Relatórios</button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Stock na Mão. Todos os direitos reservados.</p>
+        <p>Desenvolvido por Grupo Stock na Mão</p>
+    </footer>
+    <script>
+        //1. Produtos
+        // Função para adicionar um novo produto
+        async function adicionarProduto() {
+            const nome = document.getElementById('produto-nome').value;
+            const quantidade = document.getElementById('produto-quantidade').value;
+            const dataValidade = document.getElementById('produto-validade').value;
+            const cor = document.getElementById('produto-cor').value;
+            const tamanho = document.getElementById('produto-tamanho').value;
+            const localArmazenamento = document.getElementById('produto-local').value;
+            const response = await fetch('http://localhost:3000/api/produtos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nome, quantidade, dataValidade, cor, tamanho, localArmazenamento })
+            });
+            const data = await response.json();
+            console.log(data);
+        }
+
+        // Função para buscar um produto pelo ID
+        async function buscarProduto() {
+            const id = document.getElementById('produto-id-busca').value;
+            const response = await fetch(`http://localhost:3000/api/produtos/${id}`);
+            const data = await response.json();
+            console.log(data);
+        }
+
+        // Função para excluir um produto
+        async function excluirProduto() {
+            const id = document.getElementById('produto-id-busca').value;
+            const response = await fetch(`http://localhost:3000/api/produtos/${id}`, {
+                method: 'DELETE'
+            });
+            console.log(response.status);
+        }
+
+        // Função para atualizar um produto
+        async function atualizarProduto() {
+            const id = document.getElementById('produto-id-busca').value;
+            const nome = document.getElementById('produto-nome').value;
+            const quantidade = document.getElementById('produto-quantidade').value;
+            const dataValidade = document.getElementById('produto-validade').value;
+            const cor = document.getElementById('produto-cor').value;
+            const tamanho = document.getElementById('produto-tamanho').value;
+            const localArmazenamento = document.getElementById('produto-local').value;
+            const response = await fetch(`http://localhost:3000/api/produtos/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nome, quantidade, dataValidade, cor, tamanho, localArmazenamento })
+            });
+            const data = await response.json();
+            console.log(data);
+        }
+
+        // Função para atualizar informação individual de um produto podendo ser qualquer uma das informações do produto (nome, quantidade, dataValidade, cor, tamanho, localArmazenamento)
+        async function atualizarInformacaoIndividualProduto() {
+            const id = document.getElementById('produto-id-busca').value;
+            const nome = document.getElementById('produto-nome').value;
+            const quantidade = document.getElementById('produto-quantidade').value;
+            const dataValidade = document.getElementById('produto-validade').value;
+            const cor = document.getElementById('produto-cor').value;
+            const tamanho = document.getElementById('produto-tamanho').value;
+            const localArmazenamento = document.getElementById('produto-local').value;
+            const response = await fetch(`http://localhost:3000/api/produtos/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nome, quantidade, dataValidade, cor, tamanho, localArmazenamento })
+            });
+            const data = await response.json();
+            console.log(data);
+        }
+
+        // 2. Movimentação de Estoque
+        // Função para atualizar a quantidade de um produto após venda
+        async function produtoVendido() {
+            const id = document.getElementById('produto-id-busca').value;
+            const quantidade = document.getElementById('produto-quantidade').value;
+            const motivo = document.getElementById('produto-motivo').value;
+            const response = await fetch(`http://localhost:3000/api/produtos/${id}/baixa`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ quantidade, motivo })
+            });
+            const data = await response.json();
+            console.log(data);
+        }
+
+
+        // 3. Relatórios Simples (Opcional)
+        // Função que redireciona para a página de relatórios
+        async function paginaRelatorio() {
+            const response = await fetch('http://localhost:3000/front/relatorios.html');
+            const data = await response.json();
+            console.log(data);
+        }
+
     </script>
-  </body>
+</body>
 </html>

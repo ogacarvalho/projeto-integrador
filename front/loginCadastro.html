@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock na Mão - Login</title>
+    <style>
+        /* Importa a fonte Roboto do Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        
+        /* Estilização do corpo da página */
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        
+        /* Cabeçalho fixo com fundo branco */
+        header {
+            width: 100%;
+            background: white;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            text-align: left;
+        }
+        
+        /* Container central para login e cadastro */
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 60px;
+            width: 350px;
+        }
+        
+        /* Estilização dos campos de entrada e botões */
+        input, button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 20px;
+            border: none;
+        }
+        
+        /* Botões com cor azul e efeito hover */
+        button {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        /* Classe para esconder elementos dinamicamente */
+        .hidden { display: none; }
+        
+        /* Rodapé da página */
+        footer {
+            width: 100%;
+            background: #fff;
+            text-align: center;
+            padding: 20px;
+            position: absolute;
+            bottom: 0;
+        }
+        footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Stock na Mão</h2>
+    </header>
+    
+    <!-- Formulário de Login -->
+    <div class="container" id="login-container">
+        <h2>Login</h2>
+        <input type="email" id="login-email" placeholder="E-mail">
+        <input type="password" id="login-senha" placeholder="Senha">
+        <button onclick="fazerLogin()">Login</button>
+        <p id="login-mensagem"></p>
+        <button onclick="mostrarCadastro()">Não tem cadastro? Clique aqui</button>
+    </div>
+    
+    <!-- Formulário de Cadastro -->
+    <div class="container hidden" id="cadastro-container">
+        <h2>Cadastro</h2>
+        <input type="text" id="cadastro-nome" placeholder="Nome">
+        <input type="email" id="cadastro-email" placeholder="E-mail">
+        <input type="password" id="cadastro-senha" placeholder="Senha">
+        <button onclick="fazerCadastro()">Cadastrar</button>
+        <p id="cadastro-mensagem"></p>
+        <button onclick="mostrarLogin()">Já tem cadastro? Faça login</button>
+    </div>
+
+    <!-- Rodapé da página -->
+    <footer>
+        <p>&copy; 2025 Stock na Mão. Todos os direitos reservados.</p>
+        <p>Desenvolvido por Grupo Stock na Mão</p>
+    </footer>
+
+    <script>
+        /* Função para exibir o formulário de cadastro e esconder o de login */
+        function mostrarCadastro() {
+            document.getElementById("login-container").classList.add("hidden");
+            document.getElementById("cadastro-container").classList.remove("hidden");
+        }
+
+        /* Função para exibir o formulário de login e esconder o de cadastro */
+        function mostrarLogin() {
+            document.getElementById("cadastro-container").classList.add("hidden");
+            document.getElementById("login-container").classList.remove("hidden");
+        }
+
+        /* Função para processar o login do usuário */
+        async function fazerLogin() {
+            const email = document.getElementById("login-email").value;
+            const senha = document.getElementById("login-senha").value;
+            
+            const response = await fetch("/api/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, senha })
+            });
+            
+            const data = await response.json();
+            document.getElementById("login-mensagem").textContent = data.message;
+        }
+
+        /* Função para processar o cadastro de um novo usuário */
+        async function fazerCadastro() {
+            const nome = document.getElementById("cadastro-nome").value;
+            const email = document.getElementById("cadastro-email").value;
+            const senha = document.getElementById("cadastro-senha").value;
+            
+            const response = await fetch("/api/usuarios", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nome, email, senha })
+            });
+            
+            const data = await response.json();
+            document.getElementById("cadastro-mensagem").textContent = `Usuário cadastrado com sucesso! ID: ${data.id}`;
+        }
+
+        // Função que envia para página de produtos após login
+        function paginaProdutos() {
+            window.location.href = "front/produtos.html";
+        }
+    </script>
+</body>
+</html>
