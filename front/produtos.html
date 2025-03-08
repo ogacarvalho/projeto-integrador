@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock na Mão - Produtos</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        header, footer {
+            width: 100%;
+            background: white;
+            padding: 10px;
+            position: fixed;
+        }
+        header {
+            top: 0;
+            text-align: left;
+            padding-left: 20px;
+        }
+        footer {
+            bottom: 0;
+            text-align: center;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 60px;
+            width: 500px;
+        }
+        input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 20px;
+            border: none;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 10px 0;
+        }
+        button {
+            width: 48%;
+            padding: 14px;
+            border-radius: 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Stock na Mão</h2>
+    </header>
+    
+    <div class="container">
+        <h2>Gestão de Produtos</h2>
+        <input type="text" id="produto-nome" placeholder="Nome do Produto">
+        <input type="number" id="produto-quantidade" placeholder="Quantidade">
+        <input type="date" id="produto-validade" placeholder="Data de Validade">
+        <input type="text" id="produto-cor" placeholder="Cor">
+        <input type="text" id="produto-tamanho" placeholder="Tamanho">
+        <input type="text" id="produto-local" placeholder="Local de Armazenamento">
+        <button onclick="cadastrarProduto()">Cadastrar Produto</button>
+        <input type="text" id="produto-id-busca" placeholder="ID do Produto">
+        <div class="button-group">
+            <button onclick="consultarProduto()">Consultar Produto</button>
+            <button onclick="deletarProduto()">Excluir Produto</button>
+        </div>
+        <div class="button-group">
+            <button onclick="atualizarProduto()">Atualizar Produto</button>
+            <!-- <button onclick="atualizarInformacaoIndividualProduto()">Atualizar Informações do Produto</button> -->
+        </div>
+        <div class="button-group">
+            <button onclick="produtoVendido">Produtos Vendidos</button>
+            <!-- <button onclick="listarProdutos">Listar Todos os Produtos</button> -->
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Stock na Mão. Todos os direitos reservados.</p>
+        <p>Desenvolvido por Grupo Stock na Mão</p>
+    </footer>
+    <script>
+        //1. Produtos
+        // Função para cadastrar um novo produto
+        async function cadastrarProduto() {
+            const nome = document.getElementById('produto-nome').value;
+            const quantidade = document.getElementById('produto-quantidade').value;
+            const dataValidade = document.getElementById('produto-validade').value;
+            const cor = document.getElementById('produto-cor').value;
+            const tamanho = document.getElementById('produto-tamanho').value;
+            const localArmazenamento = document.getElementById('produto-local').value;
+            const response = await fetch('http://localhost:3000/api/produtos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nome, quantidade, dataValidade, cor, tamanho, localArmazenamento })
+            });
+            const data = await response.json();
+            console.log(data);
+        }
+
+        // Função para buscar um produto pelo ID
+        async function consultarProduto() {
+            const id = document.getElementById('produto-id-busca').value;
+            const response = await fetch(`http://localhost:3000/api/produtos/${id}`);
+            const data = await response.json();
+            console.log(data);
+        }
+        
+    </script>
+</body>
+</html>
