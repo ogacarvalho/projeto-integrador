@@ -12,6 +12,7 @@ Caroleen Ahmad Fadel
 
 Pedro Henrique Oliveira de Souza
 
+Lucas Batista Cavalcante
 
 LANDING PAGE:
 https://ogacarvalho.github.io/projeto-integrador/
