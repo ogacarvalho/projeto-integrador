@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <style>
         /* Importa a fonte Roboto do Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-        
+
         /* Estilização do corpo da página */
         body {
             font-family: 'Roboto', sans-serif;
@@ -19,7 +20,7 @@
             margin: 0;
             background-color: #f4f4f4;
         }
-        
+
         /* Cabeçalho fixo com fundo branco */
         header {
             width: 100%;
@@ -30,7 +31,7 @@
             left: 0;
             text-align: left;
         }
-        
+
         /* Container central para login e cadastro */
         .container {
             background: white;
@@ -41,9 +42,10 @@
             margin-top: 60px;
             width: 350px;
         }
-        
+
         /* Estilização dos campos de entrada e botões */
-        input, button {
+        input,
+        button {
             display: block;
             width: 100%;
             margin: 10px 0;
@@ -51,20 +53,23 @@
             border-radius: 20px;
             border: none;
         }
-        
+
         /* Botões com cor azul e efeito hover */
         button {
             background-color: #007BFF;
             color: white;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #0056b3;
         }
-        
+
         /* Classe para esconder elementos dinamicamente */
-        .hidden { display: none; }
-        
+        .hidden {
+            display: none;
+        }
+
         /* Rodapé da página */
         footer {
             width: 100%;
@@ -74,16 +79,18 @@
             position: absolute;
             bottom: 0;
         }
+
         footer p {
             margin: 5px 0;
         }
     </style>
 </head>
+
 <body>
     <header>
         <h2>Stock na Mão</h2>
     </header>
-    
+
     <!-- Formulário de Login -->
     <div class="container" id="login-container">
         <h2>Login</h2>
@@ -93,7 +100,7 @@
         <p id="login-mensagem"></p>
         <button onclick="mostrarCadastro()">Não tem cadastro? Clique aqui</button>
     </div>
-    
+
     <!-- Formulário de Cadastro -->
     <div class="container hidden" id="cadastro-container">
         <h2>Cadastro</h2>
@@ -124,41 +131,45 @@
             document.getElementById("login-container").classList.remove("hidden");
         }
 
-        /* Função para processar o login do usuário */
         async function fazerLogin() {
             const email = document.getElementById("login-email").value;
             const senha = document.getElementById("login-senha").value;
-            
-            const response = await fetch("/api/login", {
+
+            const response = await fetch("http://localhost:3000/api/usuarios/login", { // Corrigido para o endpoint correto
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, senha })
             });
-            
+
             const data = await response.json();
-            document.getElementById("login-mensagem").textContent = data.message;
+            if (response.ok) {
+                alert("Login realizado com sucesso!");
+                window.location.href = "produtos.html"; // Redireciona para a página de produtos
+            } else {
+                document.getElementById("login-mensagem").textContent = data.message || "Erro ao fazer login";
+            }
         }
 
-        /* Função para processar o cadastro de um novo usuário */
         async function fazerCadastro() {
             const nome = document.getElementById("cadastro-nome").value;
             const email = document.getElementById("cadastro-email").value;
             const senha = document.getElementById("cadastro-senha").value;
-            
-            const response = await fetch("/api/usuarios", {
+
+            const response = await fetch("http://localhost:3000/api/usuarios", { // Mantido para cadastro
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ nome, email, senha })
             });
-            
-            const data = await response.json();
-            document.getElementById("cadastro-mensagem").textContent = `Usuário cadastrado com sucesso! ID: ${data.id}`;
-        }
 
-        // Função que envia para página de produtos após login
-        function paginaProdutos() {
-            window.location.href = "front/produtos.html";
+            const data = await response.json();
+            if (response.ok) {
+                alert("Usuário cadastrado com sucesso!");
+                mostrarLogin(); // Exibe o formulário de login após o cadastro
+            } else {
+                document.getElementById("cadastro-mensagem").textContent = data.message || "Erro ao cadastrar usuário";
+            }
         }
     </script>
 </body>
+
 </html>
