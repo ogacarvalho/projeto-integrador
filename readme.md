@@ -134,4 +134,4 @@ BODY {
 
 **Uso**
 
-Para começar, é necessário o cadastro do usuário. Após isso, é possível acessar a tela de login. Na tela seguinte, através dos botões, é possível preencher os dados dos produtos e, assim, salvar (Adicionar Produto), pesquisar (Buscar Produto), editar (Atualizar Produto), excluir (Excluir Produto) e encaminhar para a página de relatórios (Atualizar Informações do Produto).
+Para começar, é necessário o cadastro do usuário. Após isso, é possível acessar a tela de login. Na tela seguinte é possível preencher os dados dos produtos e, através dos botões, salvar (Adicionar Produto), pesquisar (Buscar Produto), editar (Atualizar Produto), excluir (Excluir Produto) e encaminhar para a página de relatórios (Atualizar Informações do Produto).
