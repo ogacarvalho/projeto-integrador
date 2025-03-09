@@ -14,6 +14,8 @@ Pedro Henrique Oliveira de Souza
 
 Lucas Batista Cavalcante
 
+Gabriel Felipe Carvalho de Paula
+
 
 # Stock na Mão – Aplicativo Web
 
