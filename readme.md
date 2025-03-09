@@ -14,6 +14,17 @@ Pedro Henrique Oliveira de Souza
 
 Lucas Batista Cavalcante
 
+
+# Stock na Mão – Aplicativo Web
+
+**Objetivo:**
+
+O Stock na Mão é um aplicativo multiplataforma intuitivo e fácil de usar, projetado para auxiliar micros e pequenos empresários a organizarem seus estoques, evitando perdas e compras redundantes ou desnecessárias.
+
+**Instalação do Ambiente de Desenvolvimento:**
+
+
+
 LANDING PAGE:
 https://ogacarvalho.github.io/projeto-integrador/
 
@@ -119,3 +130,8 @@ BODY {
 }
 
 ![image](https://github.com/user-attachments/assets/f3975a3b-d9c2-45aa-af95-939c0f049f16)
+
+
+**Uso**
+
+Para começar, é necessário o cadastro do usuário. Após isso, é possível acessar a tela de login. Na tela seguinte, através dos botões, é possível preencher os dados dos produtos e, assim, salvar (Adicionar Produto), pesquisar (Buscar Produto), editar (Atualizar Produto), excluir (Excluir Produto) e encaminhar para a página de relatórios (Atualizar Informações do Produto).
