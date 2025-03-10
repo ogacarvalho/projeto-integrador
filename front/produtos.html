@@ -22,11 +22,15 @@
             background: white;
             padding: 10px;
             position: fixed;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         header {
             top: 0;
             text-align: left;
             padding-left: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         footer {
             bottom: 0;
@@ -68,11 +72,41 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        /* Menu de navegação */
+        nav {
+            background: #007BFF; /* Cor do botão "Listar Produtos" */
+            padding: 10px;
+            text-align: center;
+            border-radius: 15px;
+            margin-right: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: rgb(255, 255, 255);
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #0056b3; /* Cor do hover do botão */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Nova sombra ao passar o mouse */
+        }
     </style>
 </head>
 <body>
     <header>
         <h2>Stock na Mão</h2>
+        <nav>
+            <a href="#produtos">Produtos</a>
+            <a href="#relatorios">Relatórios</a>
+            <a href="#sair">Sair</a>
+        </nav>
     </header>
     
     <div class="container">
@@ -94,8 +128,8 @@
             <button onclick="atualizarInformacaoIndividualProduto()">Atualizar Informações do Produto</button>
         </div>
         <div class="button-group">
-            <button onclick="produtoVendido">Produtos Vendidos</button>
-            <button onclick="paginaRelatorio">Relatórios</button>
+            <button onclick="produtoVendido()">Produtos Vendidos</button>
+            <button onclick="paginaRelatorio()">Relatórios</button>
         </div>
     </div>
     
@@ -198,15 +232,11 @@
             console.log(data);
         }
 
-
         // 3. Relatórios Simples (Opcional)
         // Função que redireciona para a página de relatórios
         async function paginaRelatorio() {
-            const response = await fetch('http://localhost:3000/front/relatorios.html');
-            const data = await response.json();
-            console.log(data);
+            window.location.href = 'relatorios.html'; // Redireciona para a página de relatórios
         }
-
     </script>
 </body>
 </html>

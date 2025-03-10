@@ -27,6 +27,9 @@
             color: #fff;
             padding: 20px;
             text-align: center;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
@@ -38,11 +41,16 @@
             font-size: 1.2em;
         }
 
-        /* Navegação */
+        /* Menu de navegação */
         nav {
             background: #100438;
             padding: 10px;
             text-align: center;
+            border-radius: 15px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         nav a {
@@ -50,10 +58,15 @@
             margin: 0 15px;
             text-decoration: none;
             font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         nav a:hover {
-            text-decoration: underline;
+            background-color: #0044cc;
+            color: #fff;
+            text-decoration: none;
         }
 
         /* Seção principal (Hero) */
@@ -113,6 +126,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         .sell-section button:hover {
@@ -165,8 +179,9 @@
 
     <!-- Navegação -->
     <nav>
-       
-        <a href="#contato">Contato: contato@stocknamao.com.br</a>
+        <a href="/front/produtos.html">Produtos</a>
+        <a href="/front/relatorios.html">Relatórios</a>
+        <a href="#sair">Sair</a>
     </nav>
 
     <!-- Seção principal (Hero) -->
@@ -209,4 +224,3 @@
 
 </body>
 </html>
-
